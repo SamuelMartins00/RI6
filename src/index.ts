@@ -16,7 +16,6 @@ const rl = readline.createInterface({
 rl.question(
     "Escolha o tipo de operação:\n1 - Operação com 2 números\n2 - Bhaskara\n\nOpção: ",
     (respostaTipo) => {
-
         const tipo = Number(respostaTipo);
 
         if (tipo === 1) {
@@ -43,35 +42,50 @@ rl.question(
                             case 1:
                                 operacao = new Soma(numero1, numero2);
                                 break;
+
                             case 2:
                                 operacao = new Subtracao(numero1, numero2);
                                 break;
+
                             case 3:
                                 operacao = new Multiplicacao(numero1, numero2);
                                 break;
+
                             case 4:
                                 operacao = new Divisao(numero1, numero2);
                                 break;
+
                             case 5:
                                 operacao = new Potenciacao(numero1, numero2);
                                 break;
+
                             case 6:
                                 operacao = new Radiciacao(numero1, numero2);
                                 break;
+
                             default:
                                 console.log("Opção inválida.");
                                 rl.close();
                                 return;
                         }
 
-                        console.log("Resultado:", operacao.calcular());
-                        rl.close();
+                        try {
+                            console.log(
+                                "Resultado:",
+                                operacao.calcular()
+                            );
+                        } catch (erro) {
+                            console.log(
+                                "Erro:",
+                                (erro as Error).message
+                            );
+                        } finally {
+                            rl.close();
+                        }
                     });
                 });
             });
-        }
-
-        else if (tipo === 2) {
+        } else if (tipo === 2) {
             rl.question("Digite o valor de a: ", (respostaA) => {
                 const a = Number(respostaA);
 
@@ -83,18 +97,23 @@ rl.question(
 
                         const bhaskara = new Bhaskara(a, b, c);
 
-                        const [x1, x2] = bhaskara.calcular();
+                        try {
+                            const [x1, x2] = bhaskara.calcular();
 
-                        console.log("x1 =", x1);
-                        console.log("x2 =", x2);
-
-                        rl.close();
+                            console.log("x1 =", x1);
+                            console.log("x2 =", x2);
+                        } catch (erro) {
+                            console.log(
+                                "Erro:",
+                                (erro as Error).message
+                            );
+                        } finally {
+                            rl.close();
+                        }
                     });
                 });
             });
-        }
-
-        else {
+        } else {
             console.log("Opção inválida.");
             rl.close();
         }
