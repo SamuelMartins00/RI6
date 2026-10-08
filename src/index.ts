@@ -6,6 +6,7 @@ import { Multiplicacao } from "./Multiplicacao";
 import { Divisao } from "./Divisao";
 import { Potenciacao } from "./Potenciacao";
 import { Radiciacao } from "./Radiciacao";
+import { Bhaskara } from "./Bhaskara";
 
 const rl = readline.createInterface({
     input: process.stdin,
