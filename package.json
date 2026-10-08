@@ -16,7 +16,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "test": "npm run test"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "tsx --test tests/*.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
