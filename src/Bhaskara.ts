@@ -11,7 +11,15 @@ export class Bhaskara {
     }
 
     calcular(): number[] {
+        if (this.a === 0) {
+            throw new Error("O valor de 'a' não pode ser zero.");
+        }
+
         const delta = this.b ** 2 - 4 * this.a * this.c;
+
+        if (delta < 0) {
+            throw new Error("Delta negativo. Não existem raízes reais.");
+        }
 
         const x1 = (-this.b + Math.sqrt(delta)) / (2 * this.a);
         const x2 = (-this.b - Math.sqrt(delta)) / (2 * this.a);

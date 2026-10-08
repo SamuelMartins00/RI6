@@ -13,59 +13,90 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("Digite o primeiro número: ", (resposta1) => {
-    const numero1 = Number(resposta1);
+rl.question(
+    "Escolha o tipo de operação:\n1 - Operação com 2 números\n2 - Bhaskara\n\nOpção: ",
+    (respostaTipo) => {
 
-    rl.question("Digite o segundo número: ", (resposta2) => {
-        const numero2 = Number(resposta2);
+        const tipo = Number(respostaTipo);
 
-        console.log("\nEscolha uma operação:");
-        console.log("1 - Soma");
-        console.log("2 - Subtração");
-        console.log("3 - Multiplicação");
-        console.log("4 - Divisão");
-        console.log("5 - Potenciação");
-        console.log("6 - Radiciação");
+        if (tipo === 1) {
+            rl.question("Digite o primeiro número: ", (resposta1) => {
+                const numero1 = Number(resposta1);
 
-        rl.question("Opção: ", (respostaOpcao) => {
-            const opcao = Number(respostaOpcao);
+                rl.question("Digite o segundo número: ", (resposta2) => {
+                    const numero2 = Number(resposta2);
 
-            let operacao: Operacao;
+                    console.log("\nEscolha uma operação:");
+                    console.log("1 - Soma");
+                    console.log("2 - Subtração");
+                    console.log("3 - Multiplicação");
+                    console.log("4 - Divisão");
+                    console.log("5 - Potenciação");
+                    console.log("6 - Radiciação");
 
-            switch (opcao) {
-                case 1:
-                    operacao = new Soma(numero1, numero2);
-                    break;
+                    rl.question("Opção: ", (respostaOpcao) => {
+                        const opcao = Number(respostaOpcao);
 
-                case 2:
-                    operacao = new Subtracao(numero1, numero2);
-                    break;
+                        let operacao: Operacao;
 
-                case 3:
-                    operacao = new Multiplicacao(numero1, numero2);
-                    break;
+                        switch (opcao) {
+                            case 1:
+                                operacao = new Soma(numero1, numero2);
+                                break;
+                            case 2:
+                                operacao = new Subtracao(numero1, numero2);
+                                break;
+                            case 3:
+                                operacao = new Multiplicacao(numero1, numero2);
+                                break;
+                            case 4:
+                                operacao = new Divisao(numero1, numero2);
+                                break;
+                            case 5:
+                                operacao = new Potenciacao(numero1, numero2);
+                                break;
+                            case 6:
+                                operacao = new Radiciacao(numero1, numero2);
+                                break;
+                            default:
+                                console.log("Opção inválida.");
+                                rl.close();
+                                return;
+                        }
 
-                case 4:
-                    operacao = new Divisao(numero1, numero2);
-                    break;
+                        console.log("Resultado:", operacao.calcular());
+                        rl.close();
+                    });
+                });
+            });
+        }
 
-                case 5:
-                    operacao = new Potenciacao(numero1, numero2);
-                    break;
+        else if (tipo === 2) {
+            rl.question("Digite o valor de a: ", (respostaA) => {
+                const a = Number(respostaA);
 
-                case 6:
-                    operacao = new Radiciacao(numero1, numero2);
-                    break;
+                rl.question("Digite o valor de b: ", (respostaB) => {
+                    const b = Number(respostaB);
 
-                default:
-                    console.log("Opção inválida.");
-                    rl.close();
-                    return;
-            }
+                    rl.question("Digite o valor de c: ", (respostaC) => {
+                        const c = Number(respostaC);
 
-            console.log("Resultado:", operacao.calcular());
+                        const bhaskara = new Bhaskara(a, b, c);
 
+                        const [x1, x2] = bhaskara.calcular();
+
+                        console.log("x1 =", x1);
+                        console.log("x2 =", x2);
+
+                        rl.close();
+                    });
+                });
+            });
+        }
+
+        else {
+            console.log("Opção inválida.");
             rl.close();
-        });
-    });
-});
+        }
+    }
+);
