@@ -1,0 +1,26 @@
+{
+  "name": "ri6",
+  "version": "1.0.0",
+  "description": "Calculadora em CLI",
+  "homepage": "https://github.com/SamuelMartins00/RI6#readme",
+  "bugs": {
+    "url": "https://github.com/SamuelMartins00/RI6/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelMartins00/RI6.git"
+  },
+  "license": "ISC",
+  "author": "Samuel Martins",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "test": "npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
